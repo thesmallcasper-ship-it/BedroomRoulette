@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cocktail glass decal">
+  <defs>
+    <linearGradient id="tile" x1="78" y1="68" x2="430" y2="438" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9eed7"/>
+      <stop offset="0.54" stop-color="#eed8a7"/>
+      <stop offset="1" stop-color="#d4b56d"/>
+    </linearGradient>
+    <radialGradient id="tileGlow" cx="155" cy="118" r="310" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff9ea" stop-opacity="0.95"/>
+      <stop offset="0.46" stop-color="#fff4d4" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#b98e37" stop-opacity="0.1"/>
+    </radialGradient>
+    <linearGradient id="glassStroke" x1="142" y1="105" x2="372" y2="405" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff9ea"/>
+      <stop offset="0.26" stop-color="#a67926"/>
+      <stop offset="0.62" stop-color="#5d300d"/>
+      <stop offset="1" stop-color="#f4d99c"/>
+    </linearGradient>
+    <linearGradient id="drink" x1="170" y1="182" x2="330" y2="292" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb56b"/>
+      <stop offset="0.48" stop-color="#d94a4f"/>
+      <stop offset="1" stop-color="#8c1232"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#5f350e" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <rect x="33" y="38" width="446" height="436" rx="82" fill="url(#tile)" transform="rotate(-7 256 256)"/>
+  <rect x="49" y="52" width="410" height="408" rx="72" fill="url(#tileGlow)" transform="rotate(-7 256 256)"/>
+  <path d="M83 176C128 101 229 64 319 87c56 14 94 48 117 92" fill="none" stroke="#fff9ea" stroke-width="28" stroke-linecap="round" opacity="0.28"/>
+  <path d="M75 338c56 75 164 103 258 68 47-18 82-47 105-82" fill="none" stroke="#8f681f" stroke-width="24" stroke-linecap="round" opacity="0.16"/>
+
+  <g filter="url(#shadow)" transform="rotate(-9 256 256)">
+    <path d="M151 142h218L278 269v86h58c14 0 25 9 25 20 0 12-11 21-25 21H184c-14 0-25-9-25-21 0-11 11-20 25-20h58v-86L151 142Z" fill="#fff6dc" opacity="0.34"/>
+    <path d="M151 142h218L278 269v86h58c14 0 25 9 25 20 0 12-11 21-25 21H184c-14 0-25-9-25-21 0-11 11-20 25-20h58v-86L151 142Z" fill="none" stroke="url(#glassStroke)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M178 172h164l-66 89c-7 9-25 9-32 0l-66-89Z" fill="url(#drink)" opacity="0.88"/>
+    <path d="M187 176c40 12 96 12 143 0" fill="none" stroke="#ffe2ab" stroke-width="8" stroke-linecap="round" opacity="0.72"/>
+    <path d="M206 156c15 26 44 50 73 60" fill="none" stroke="#fff8e8" stroke-width="11" stroke-linecap="round" opacity="0.62"/>
+    <path d="M254 271v82" fill="none" stroke="#7d4b18" stroke-width="10" stroke-linecap="round" opacity="0.74"/>
+    <path d="M188 374h145" fill="none" stroke="#7d4b18" stroke-width="9" stroke-linecap="round" opacity="0.7"/>
+    <path d="M332 103c-28 31-49 58-63 93" fill="none" stroke="#6c4718" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="340" cy="98" r="25" fill="#d8294a" stroke="#6c4718" stroke-width="8"/>
+    <path d="M327 83c-17-10-33-15-48-17 2 17 12 29 29 38" fill="#4e8b43" stroke="#315b28" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+</svg>
