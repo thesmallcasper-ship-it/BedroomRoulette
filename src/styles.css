@@ -522,7 +522,7 @@
 }
 
 .dice-cube.rolling .dice-front-image {
-  opacity: 0;
+  opacity: 0.5;
 }
 
 .dice-cube.locked .dice-front-image {
@@ -534,11 +534,11 @@
   z-index: 1;
   display: block;
   max-width: 100%;
-  color: var(--td-ink);
+  color: var(--td-wine);
   font-family: "Jost", "Avenir Next", "Segoe UI", sans-serif;
   font-size: clamp(0.78rem, 2.1vw, 1.02rem);
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.03em;
   overflow-wrap: anywhere;

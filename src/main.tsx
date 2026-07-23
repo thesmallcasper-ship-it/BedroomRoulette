@@ -772,40 +772,27 @@ function randomInt(min: number, max: number) {
   return min + Math.floor(Math.random() * (max - min + 1));
 }
 
-function halveTurns(turns: number) {
-  return Math.max(1, Math.round(turns / 2));
-}
-
-function createDiceSpinStyle(turns: number): DiceSpinConfig {
-  const yTurns = turns + 1;
-  const zTurns = Math.max(1, turns - 1);
-  const duration = (780 + turns * 52 + randomInt(0, 140)) * 3;
-  const finalX = turns * 360 - 18;
-  const finalY = yTurns * 360 + 34;
-  const finalZ = zTurns * 360;
-  const drift = randomInt(-10, 10);
-  const offsets = [0, 0.1, 0.23, 0.4, 0.6, 0.78, 0.92, 1];
-  const spinProgress = [0, 0.22, 0.43, 0.61, 0.76, 0.88, 0.96, 1];
-  const hops = [0, -18, 3, -14, 2, -9, 1, 0];
-  const scales = [1, 1.05, 0.99, 1.035, 1, 1.02, 0.995, 1];
+function createDiceSpinStyle(axis: DiceKey): DiceSpinConfig {
+  const duration = 860 + randomInt(0, 120);
+  const baseX = -18;
+  const baseY = 34;
+  const offsets = [0, 0.22, 0.5, 0.78, 1];
+  const progress = [0, 0.3, 0.62, 0.88, 1];
+  const hops = [0, -10, 3, -5, 0];
+  const scales = [1, 1.025, 0.995, 1.012, 1];
 
   return {
     duration,
     keyframes: offsets.map((offset, index) => {
-      const isFirstFrame = index === 0;
-      const isLastFrame = index === offsets.length - 1;
-      const jitter = isFirstFrame || isLastFrame ? 0 : randomInt(-42, 42);
-      const progress = spinProgress[index];
-      const x = isFirstFrame ? -18 : Math.round(finalX * progress + jitter);
-      const y = isFirstFrame ? 34 : Math.round(finalY * progress + (isLastFrame ? 0 : randomInt(-54, 54)));
-      const z = isFirstFrame ? 0 : Math.round(finalZ * progress + (isLastFrame ? 0 : randomInt(-28, 28)));
-      const travel = Math.round(Math.sin(offset * Math.PI) * drift);
+      const turn = 360 * progress[index];
+      const x = axis === 'action' ? baseX - turn : baseX;
+      const y = axis === 'target' ? baseY + turn : axis === 'rule' ? baseY - turn : baseY;
 
       return {
         offset,
         transform:
-          `translate3d(${travel}px, ${hops[index]}px, 0) ` +
-          `rotateX(${x}deg) rotateY(${y}deg) rotateZ(calc(${z}deg + var(--dice-tilt, -2deg))) ` +
+          `translate3d(0, ${hops[index]}px, 0) ` +
+          `rotateX(${x}deg) rotateY(${y}deg) rotateZ(var(--dice-tilt, -2deg)) ` +
           `scale(${scales[index]})`,
       };
     }),
@@ -813,14 +800,10 @@ function createDiceSpinStyle(turns: number): DiceSpinConfig {
 }
 
 function createDiceSpins(): DiceSpin {
-  const actionTurns = randomInt(6, 12);
-  const targetTurns = halveTurns(actionTurns);
-  const ruleTurns = halveTurns(targetTurns);
-
   return {
-    action: createDiceSpinStyle(actionTurns),
-    target: createDiceSpinStyle(targetTurns),
-    rule: createDiceSpinStyle(ruleTurns),
+    action: createDiceSpinStyle('action'),
+    target: createDiceSpinStyle('target'),
+    rule: createDiceSpinStyle('rule'),
   };
 }
 
@@ -829,22 +812,24 @@ function wait(ms: number) {
 }
 
 async function animateDiceBox(element: HTMLSpanElement | null, spin: DiceSpinConfig) {
+  const revealLeadMs = 180;
+
   if (!element?.animate) {
-    await wait(spin.duration);
+    await wait(Math.max(0, spin.duration - revealLeadMs));
     return;
   }
 
   const animation = element.animate(spin.keyframes, {
     duration: spin.duration,
-    easing: 'linear',
+    easing: 'cubic-bezier(0.2, 0.72, 0.2, 1)',
     fill: 'both',
   });
 
-  try {
-    await animation.finished;
-  } finally {
+  void animation.finished.catch(() => undefined).finally(() => {
     animation.cancel();
-  }
+  });
+
+  await wait(Math.max(0, spin.duration - revealLeadMs));
 }
 
 function pickRandomSoundFile() {
