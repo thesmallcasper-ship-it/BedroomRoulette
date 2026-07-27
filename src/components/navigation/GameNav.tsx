@@ -81,6 +81,18 @@ function GameNavIcon({ game }: { game: GameLinkKey }) {
     );
   }
 
+  if (game === 'bedroom') {
+    return (
+      <svg viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M13.5 10.3a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" />
+        <path d="m12.5 7.9 3.2-3.2" />
+        <path d="M15.7 6.7v-2h-2" />
+        <path d="M10 13.8v3.5" />
+        <path d="M8.2 15.7h3.6" />
+      </svg>
+    );
+  }
+
   if (game === 'truth') {
     return (
       <svg viewBox="0 0 20 20" aria-hidden="true">
