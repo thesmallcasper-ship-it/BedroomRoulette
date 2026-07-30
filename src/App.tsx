@@ -931,7 +931,7 @@ export default function App() {
   const modeHint = useMemo(
     () =>
       mode === 'manual'
-        ? 'Tap the ball to reveal a random sex position idea.'
+        ? 'Tap the ball to reveal a playful after-dark idea.'
         : 'Auto mode changes the position every 3 minutes.',
     [mode],
   );
@@ -1048,7 +1048,7 @@ export default function App() {
             <h1 id="age-title">{BRAND_NAME}</h1>
             <h2>Fun and naughty games for couples</h2>
             <p>
-              Tap the position ball to reveal random sex position ideas for consenting partners.
+              Tap the position ball to reveal playful after-dark ideas for consenting partners.
               Continue only if you are 18 or older and adult content is legal where you live.
             </p>
             <div className="age-actions">
